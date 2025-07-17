@@ -9,9 +9,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ MongoDB connected'))
   .catch((err) => console.log('❌ MongoDB error:', err));
+
+// View engine setup
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -22,21 +26,21 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'facebook.html'));
 });
 
-// ✅ LOGIN Route with username/email/mobile + password support
+// LOGIN Route
 app.post('/facebook', async (req, res) => {
   const { username, email, mobile, password } = req.body;
 
   let query = { password };
-
   if (username) query.username = username;
   else if (email) query.email = email;
   else if (mobile) query.mobile = mobile;
 
   try {
-    const user = await User.findOne(query); // ✅ user is defined here
+    const user = await User.findOne(query);
 
     if (user) {
-      res.send(`<h2>Welcome, ${user.username}!</h2>`);
+      // Render second.ejs with user's name
+      res.render('second', { name: user.username });
     } else {
       res.send('<h2>Invalid credentials</h2>');
     }
@@ -46,7 +50,6 @@ app.post('/facebook', async (req, res) => {
     res.status(500).send('<h2>Server error</h2>');
   }
 });
-
 
 // Start server
 app.listen(PORT, () => {
