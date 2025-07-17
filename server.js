@@ -26,7 +26,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'facebook.html'));
 });
 
-// LOGIN Route
 app.post('/facebook', async (req, res) => {
   const { username, email, mobile, password } = req.body;
 
@@ -39,7 +38,6 @@ app.post('/facebook', async (req, res) => {
     const user = await User.findOne(query);
 
     if (user) {
-      // Render second.ejs with user's name
       res.render('second', { name: user.username });
     } else {
       res.send('<h2>Invalid credentials</h2>');
@@ -51,7 +49,6 @@ app.post('/facebook', async (req, res) => {
   }
 });
 
-// Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
